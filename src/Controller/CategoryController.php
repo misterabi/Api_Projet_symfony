@@ -83,7 +83,7 @@ class CategoryController extends AbstractController
         if($vr->isValidRole("ROLE_ADMIN",$lst_token_valid[1])){
 
             if($category == null){
-                return new JsonResponse('Article introuvable', 404);
+                return new JsonResponse('Categorie introuvable', 404);
             }
             
             $category->setTitle($r->get('title'));
@@ -118,6 +118,9 @@ class CategoryController extends AbstractController
             return new JsonResponse('Token invalide', 401);
         }
         if($vr->isValidRole("ROLE_ADMIN",$lst_token_valid[1])){
+            if($category == null){
+                return new JsonResponse('Catégorie introuvable', 404);
+            }   
             $em->remove($category);
             $em->flush();
             return new JsonResponse('Category supprimé', 200);

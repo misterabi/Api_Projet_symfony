@@ -22,6 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[Assert\NotBlank]
+    #[Assert\NotNull]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -41,6 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $lastname = null;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class, orphanRemoval: true)]
@@ -50,6 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $commentaries;
 
     #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $plainPassword = null;
 
     public function setPlainPassword(?string $pwd): self
@@ -79,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 

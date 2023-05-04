@@ -53,7 +53,7 @@ class ArticleController extends AbstractController
                 $article->setDateOfParution(new \DateTime());
             }
             $valid = $v->isValid($article);
-            if($valid == true){
+            if($valid === true){
                 $em->persist($article);
                 $em->flush();
                 return new JsonResponse('Article crée', 201);
@@ -107,7 +107,7 @@ class ArticleController extends AbstractController
                 $update = true;
             }
             $valid = $v->isValid($article);
-            if($valid == true && $update == true){
+            if($valid === true && $update === true){
                 $em->persist($article);
                 $em->flush();
                 return new JsonResponse('Article Modifier', 201);

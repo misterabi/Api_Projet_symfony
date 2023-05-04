@@ -18,6 +18,7 @@ class Category
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $title = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Article::class, orphanRemoval: true)]

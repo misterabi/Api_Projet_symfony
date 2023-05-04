@@ -50,7 +50,7 @@ class CategoryController extends AbstractController
             $category = new Category();
             $category->setTitle($r->get('title'));
             $valid = $v->isValid($category);
-            if($valid == true){
+            if($valid === true){
                 $em->persist($category);
                 $em->flush();
                 return new JsonResponse('Categorie crée', 201);
@@ -85,12 +85,11 @@ class CategoryController extends AbstractController
             if($category == null){
                 return new JsonResponse('Article introuvable', 404);
             }
-            if($r->get('title') != null){
-                $category->setTitle($r->get('title'));
-            }
+            
+            $category->setTitle($r->get('title'));
 
             $valid = $v->isValid($category);
-            if($valid == true){
+            if($valid === true){
                 $em->persist($category);
                 $em->flush();
                 return new JsonResponse('Categorie Modifier', 201);

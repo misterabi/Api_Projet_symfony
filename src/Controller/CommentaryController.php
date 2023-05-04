@@ -70,7 +70,7 @@ class CommentaryController extends AbstractController
             if($r->get('state') !== null ){
                 $commentary->setState($r->get('state'));
                 $valid = $v->isValid($commentary);
-                if($valid == true){
+                if($valid === true){
                     $em->persist($commentary);
                     $em->flush();
                     return new JsonResponse('Commentaire statuts : '.$r->get('state'), 201);

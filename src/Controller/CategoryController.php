@@ -55,14 +55,9 @@ class CategoryController extends AbstractController
                 $em->flush();
                 return new JsonResponse('Categorie crée', 201);
             }
-            else{
                 return new JsonResponse($valid, 400);
-            }
         }
-        else{
-            return new JsonResponse('Vous n\'avez pas les droits', 403);
-        }
-        
+        return new JsonResponse('Vous n\'avez pas les droits', 403);        
     }
 
     #[Route('/category/{id}', name: 'app_category_admin_patch', methods: ['PATCH'])]
@@ -81,13 +76,10 @@ class CategoryController extends AbstractController
             return new JsonResponse('Token invalide', 401);
         }
         if($vr->isValidRole("ROLE_ADMIN",$lst_token_valid[1])){
-
             if($category == null){
                 return new JsonResponse('Categorie introuvable', 404);
             }
-            
             $category->setTitle($r->get('title'));
-
             $valid = $v->isValid($category);
             if($valid === true){
                 $em->persist($category);

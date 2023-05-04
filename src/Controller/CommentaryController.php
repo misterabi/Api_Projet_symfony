@@ -35,7 +35,7 @@ class CommentaryController extends AbstractController
             $commentary->setCommentary($r->get('commentary'))
                 ->setDateOfPublish(new \DateTime())
                 ->setArticle($em->getRepository(Article::class)->findOneBy(['id' => $r->get('article_id')]))
-                ->setAuthor($em->getRepository(User::class)->findOneBy(['id' => $lst_token_valid[1]->getId()]))
+                ->setAuthor($em->getRepository(User::class)->findOneBy(['id' => $lst_token_valid[1]->id]))
                 ;
             $valid = $v->isValid($commentary);
             if($valid == true){

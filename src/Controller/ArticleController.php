@@ -47,7 +47,7 @@ class ArticleController extends AbstractController
                 ->setContent($r->get('content'))
                 ->setDateOfCreation(new \DateTime())
                 ->setCategory($em->getRepository(Category::class)->findOneBy(['id' => $r->get('category')]))
-                ->setAuthor($em->getRepository(User::class)->findOneBy(['id' => $lst_token_valid[1]->getId()]));
+                ->setAuthor($em->getRepository(User::class)->findOneBy(['id' => $lst_token_valid[1]->id]));
             if($r->get('state') != null){
                 $article->setState($r->get('state'));
                 $article->setDateOfParution(new \DateTime());
@@ -99,7 +99,7 @@ class ArticleController extends AbstractController
                 $update = true;
             }
             if($r->get('author') != null){
-                $article->setAuthor($em->getRepository(User::class)->findOneBy(['id' => $lst_token_valid[1]->getId()]));
+                $article->setAuthor($em->getRepository(User::class)->findOneBy(['id' => $lst_token_valid[1]->id]));
                 $update = true;
             }
             if($r->get('state') != null){
